@@ -6,9 +6,9 @@ on:
   pull_request:
 
 jobs:
-  test-and-build-android:
+  analyze-and-test:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -28,7 +28,24 @@ jobs:
       - name: Unit tests
         run: flutter test --coverage
 
-      - name: Run emulator GUI test
+  emulator-gui-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    needs: analyze-and-test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Flutter pub get
+        run: flutter pub get
+
+      - name: Start Android emulator and run GUI test
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 34
@@ -37,10 +54,11 @@ jobs:
           profile: pixel_6
           disable-animations: true
           force-avd-creation: true
+          emulator-options: -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
           script: |
             adb wait-for-device
             flutter devices
-            flutter test integration_test/app_test.dart -d emulator-5554 --no-pub
+            flutter test integration_test/app_test.dart -d emulator-5554 --no-pub --device-timeout 10m
             adb exec-out screencap -p > emulator-home.png
 
       - name: Upload emulator screenshot
@@ -48,6 +66,23 @@ jobs:
         with:
           name: emulator-screenshot
           path: emulator-home.png
+
+  build-android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: analyze-and-test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Flutter pub get
+        run: flutter pub get
 
       - name: Build Android APK
         run: flutter build apk --release
@@ -60,7 +95,8 @@ jobs:
 
   build-ios:
     runs-on: macos-latest
-    timeout-minutes: 60
+    timeout-minutes: 45
+    needs: analyze-and-test
     steps:
       - name: Checkout
         uses: actions/checkout@v4
