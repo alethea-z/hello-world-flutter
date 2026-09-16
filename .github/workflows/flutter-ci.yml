@@ -29,7 +29,7 @@ jobs:
         run: flutter test --coverage
 
   emulator-gui-test:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     timeout-minutes: 50
     needs: analyze-and-test
     steps:
@@ -45,21 +45,19 @@ jobs:
       - name: Flutter pub get
         run: flutter pub get
 
-      - name: Install PulseAudio runtime for emulator
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libpulse0
-
       - name: Start Android emulator and run GUI test
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 33
           target: google_apis
-          arch: x86_64
+          arch: arm64-v8a
           profile: pixel_6
+          cores: 4
+          ram-size: 6144M
           disable-animations: true
           force-avd-creation: true
-          emulator-options: -no-snapshot -noaudio -no-boot-anim -audio none -camera-back none -camera-front none
+          emulator-boot-timeout: 1800
+          emulator-options: -no-window -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
           script: |
             adb wait-for-device
             adb devices
