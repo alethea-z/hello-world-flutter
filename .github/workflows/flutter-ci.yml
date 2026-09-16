@@ -45,6 +45,12 @@ jobs:
       - name: Flutter pub get
         run: flutter pub get
 
+      - name: Install PulseAudio runtime for emulator
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libpulse0
+          ldconfig
+
       - name: Start Android emulator and run GUI test
         uses: reactivecircus/android-emulator-runner@v2
         with:
