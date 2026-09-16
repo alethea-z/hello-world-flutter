@@ -62,7 +62,7 @@ jobs:
           disable-animations: true
           force-avd-creation: true
           emulator-boot-timeout: 3600
-          emulator-options: -no-window -no-accel -no-snapshot -noaudio -no-boot-anim -no-metrics -gpu off -camera-back none -camera-front none
+          emulator-options: -no-window -no-snapshot -noaudio -no-boot-anim -no-metrics -gpu swiftshader_indirect -camera-back none -camera-front none
           script: |
             adb wait-for-device
             adb devices
