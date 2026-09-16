@@ -8,6 +8,7 @@ on:
 jobs:
   test-and-build-android:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -31,10 +32,15 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 34
+          target: google_apis
           arch: x86_64
           profile: pixel_6
+          disable-animations: true
+          force-avd-creation: true
           script: |
-            flutter test integration_test/app_test.dart -d emulator-5554
+            adb wait-for-device
+            flutter devices
+            flutter test integration_test/app_test.dart -d emulator-5554 --no-pub
             adb exec-out screencap -p > emulator-home.png
 
       - name: Upload emulator screenshot
@@ -54,6 +60,7 @@ jobs:
 
   build-ios:
     runs-on: macos-latest
+    timeout-minutes: 60
     steps:
       - name: Checkout
         uses: actions/checkout@v4
