@@ -66,11 +66,9 @@ jobs:
           script: |
             adb wait-for-device
             adb devices
-            DEVICE=$(adb devices | awk '/emulator-[0-9]+\s+device$/ {print $1; exit}')
-            echo "Using device: ${DEVICE}"
             flutter devices
-            flutter test integration_test/app_test.dart -d "$DEVICE" --no-pub --device-timeout 30m
-            adb -s "$DEVICE" exec-out screencap -p > emulator-home.png
+            flutter test integration_test/app_test.dart -d emulator-5554 --no-pub --reporter expanded
+            adb -s emulator-5554 exec-out screencap -p > emulator-home.png
 
       - name: Upload emulator screenshot
         uses: actions/upload-artifact@v4
