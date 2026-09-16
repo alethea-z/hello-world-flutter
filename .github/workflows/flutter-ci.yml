@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  test:
+  test-and-build-android:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -26,6 +26,22 @@ jobs:
 
       - name: Unit tests
         run: flutter test --coverage
+
+      - name: Run emulator GUI test
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          arch: x86_64
+          profile: pixel_6
+          script: |
+            flutter test integration_test/app_test.dart -d emulator-5554
+            adb exec-out screencap -p > emulator-home.png
+
+      - name: Upload emulator screenshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: emulator-screenshot
+          path: emulator-home.png
 
       - name: Build Android APK
         run: flutter build apk --release
