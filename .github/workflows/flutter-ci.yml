@@ -29,8 +29,8 @@ jobs:
         run: flutter test --coverage
 
   emulator-gui-test:
-    runs-on: macos-latest
-    timeout-minutes: 50
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
     needs: analyze-and-test
     steps:
       - name: Checkout
@@ -45,26 +45,31 @@ jobs:
       - name: Flutter pub get
         run: flutter pub get
 
-      - name: Start Android emulator and run GUI test
+      - name: Install emulator runtime dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libpulse0
+
+      - name: Start Android emulator (TCG, no hypervisor) and run GUI test
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 33
-          target: google_apis
-          arch: arm64-v8a
-          profile: pixel_6
+          api-level: 30
+          target: default
+          arch: x86_64
+          profile: pixel
           cores: 4
-          ram-size: 6144M
+          ram-size: 4096M
           disable-animations: true
           force-avd-creation: true
-          emulator-boot-timeout: 1800
-          emulator-options: -no-window -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          emulator-boot-timeout: 3600
+          emulator-options: -no-window -no-accel -no-snapshot -noaudio -no-boot-anim -no-metrics -gpu off -camera-back none -camera-front none
           script: |
             adb wait-for-device
             adb devices
             DEVICE=$(adb devices | awk '/emulator-[0-9]+\s+device$/ {print $1; exit}')
             echo "Using device: ${DEVICE}"
             flutter devices
-            flutter test integration_test/app_test.dart -d "$DEVICE" --no-pub --device-timeout 15m
+            flutter test integration_test/app_test.dart -d "$DEVICE" --no-pub --device-timeout 30m
             adb -s "$DEVICE" exec-out screencap -p > emulator-home.png
 
       - name: Upload emulator screenshot
