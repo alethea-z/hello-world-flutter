@@ -30,7 +30,7 @@ jobs:
 
   emulator-gui-test:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 50
     needs: analyze-and-test
     steps:
       - name: Checkout
@@ -48,7 +48,7 @@ jobs:
       - name: Start Android emulator and run GUI test
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 34
+          api-level: 33
           target: google_apis
           arch: x86_64
           profile: pixel_6
@@ -57,9 +57,12 @@ jobs:
           emulator-options: -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
           script: |
             adb wait-for-device
+            adb devices
+            DEVICE=$(adb devices | awk '/emulator-[0-9]+\s+device$/ {print $1; exit}')
+            echo "Using device: ${DEVICE}"
             flutter devices
-            flutter test integration_test/app_test.dart -d emulator-5554 --no-pub --device-timeout 10m
-            adb exec-out screencap -p > emulator-home.png
+            flutter test integration_test/app_test.dart -d "$DEVICE" --no-pub --device-timeout 15m
+            adb -s "$DEVICE" exec-out screencap -p > emulator-home.png
 
       - name: Upload emulator screenshot
         uses: actions/upload-artifact@v4
