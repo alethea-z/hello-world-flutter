@@ -49,7 +49,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y libpulse0
-          ldconfig
 
       - name: Start Android emulator and run GUI test
         uses: reactivecircus/android-emulator-runner@v2
@@ -60,7 +59,7 @@ jobs:
           profile: pixel_6
           disable-animations: true
           force-avd-creation: true
-          emulator-options: -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          emulator-options: -no-snapshot -noaudio -no-boot-anim -audio none -camera-back none -camera-front none
           script: |
             adb wait-for-device
             adb devices
