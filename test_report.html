@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>BDD Test Protokoll</title>
+  <style>
+    body {font-family: Arial, sans-serif; margin: 40px; background:#f9f9f9;}
+    h1, h2, h3 {color:#2c3e50;}
+    table {border-collapse:collapse; width:100%; margin-bottom:30px;}
+    th, td {border:1px solid #ddd; padding:8px; text-align:left; vertical-align:top;}
+    th {background-color:#f2f2f2;}
+    tr:nth-child(even) {background-color:#fafafa;}
+    .passed {color:#27ae60; font-weight:bold;}
+    .failed {color:#c0392b; font-weight:bold;}
+    .steps {background:#ecf0f1; padding:10px; border-radius:4px; font-family:monospace;}
+    .footer {margin-top:40px; font-size:0.9em; color:#7f8c8d;}
+    img {max-width:300px; height:auto; border:1px solid #ccc; margin:10px 0;}
+  </style>
+</head>
+<body>
+  <h1>BDD Test Protokoll</h1>
+  <p>Erzeugt am: 2026-09-18 08:13:46</p>
+
+  <h2>Übersicht</h2>
+  <table>
+    <tr><th>Feature</th><th>Scenario</th><th>Status</th><th>Schritte</th><th>Screenshot</th></tr>
+    <tr>
+      <td>Begrüßung</td>
+      <td>App zeigt Begrüßung an</td>
+      <td class="passed">PASSED</td>
+      <td class="steps">
+        <li>Gegeben ist, dass die App frisch gestartet ist</li>
+        <li>Dann wird der Titel "Hallo Welt, Flutter" angezeigt</li>
+        <li>Und der Untertitel "Eine Cross-Plattform-Funktionalität" ist sichtbar</li>
+        <li>Und der Zähler zeigt 0</li>
+      </td>
+      <td><img src="test/bdd/goldens/begruessung.png" alt="Begrüßung Screenshot"></td>
+    </tr>
+    <tr>
+      <td>Zählen</td>
+      <td>Zähler wird durch Tippen erhöht</td>
+      <td class="passed">PASSED</td>
+      <td class="steps">
+        <li>Gegeben ist, dass der Zähler bei 0 steht</li>
+        <li>Wenn ich auf den Button "Zählen" tippe</li>
+        <li>Dann zeigt der Zähler 1</li>
+        <li>Wenn ich erneut auf den Button "Zählen" tippe</li>
+        <li>Dann zeigt der Zähler 2</li>
+        <li>Und der Untertitel "Eine Cross-Plattform-Funktionalität" bleibt sichtbar</li>
+      </td>
+      <td><img src="test/bdd/goldens/zaehlen.png" alt="Zählen Screenshot"></td>
+    </tr>
+    <tr>
+      <td>Zurücksetzen</td>
+      <td>Zurücksetzen setzt Zähler zurück</td>
+      <td class="passed">PASSED</td>
+      <td class="steps">
+        <li>Gegeben ist, dass der Zähler bei 0 steht</li>
+        <li>Wenn ich auf den Button "Zurücksetzen" tippe</li>
+        <li>Dann zeigt der Zähler 0</li>
+      </td>
+      <td><img src="test/bdd/goldens/zuruecksetzen.png" alt="Zurücksetzen Screenshot"></td>
+    </tr>
+  </table>
+
+  <h2>Feature-Details</h2>
+  <h3>Feature: Begrüßung</h3>
+  <ul>
+    <li><strong>Scenario:</strong> App zeigt Begrüßung an</li>
+    <li><strong>Schritte:</strong> Gegeben ist, dass die App frisch gestartet ist; dann wird der Titel "Hallo Welt, Flutter" angezeigt; und der Untertitel "Eine Cross-Plattform-Funktionalität" ist sichtbar; und der Zähler zeigt 0</li>
+    <li><strong>Screenshot:</strong> <img src="test/bdd/goldens/begruessung.png" alt="Begrüßung Screenshot"></li>
+  </ul>
+  <h3>Feature: Zählen</h3>
+  <ul>
+    <li><strong>Scenario:</strong> Zähler wird durch Tippen erhöht</li>
+    <li><strong>Schritte:</strong> Gegeben ist, dass der Zähler bei 0 steht; wenn ich auf den Button "Zählen" tippe; dann zeigt der Zähler 1; wenn ich erneut auf den Button "Zählen" tippe; dann zeigt der Zähler 2; und der Untertitel "Eine Cross-Plattform-Funktionalität" bleibt sichtbar</li>
+    <li><strong>Screenshot:</strong> <img src="test/bdd/goldens/zaehlen.png" alt="Zählen Screenshot"></li>
+  </ul>
+  <h3>Feature: Zurücksetzen</h3>
+  <ul>
+    <li><strong>Scenario:</strong> Zurücksetzen setzt Zähler zurück</li>
+    <li><strong>Schritte:</strong> Gegeben ist, dass der Zähler bei 0 steht; wenn ich auf den Button "Zurücksetzen" tippe; dann zeigt der Zähler 0</li>
+    <li><strong>Screenshot:</strong> <img src="test/bdd/goldens/zuruecksetzen.png" alt="Zurücksetzen Screenshot"></li>
+    <li><strong>Scenario:</strong> Zurücksetzen ist deaktiviert, wenn Zähler 0 ist</li>
+    <li><strong>Schritte:</strong> Gegeben ist, dass der Zähler bei 2 steht; wenn ich auf den Button "Zurücksetzen" tippe; dann zeigt der Zähler 0</li>
+    <li><strong>Screenshot:</strong> <img src="test/bdd/goldens/zuruecksetzen.png" alt="Zurücksetzen Screenshot"></li>
+  </ul>
+
+  <p><strong>Gesamtdauer der Tests:</strong> ca. 8 Sekunden (aus vorherigem Lauf)</p>
+  <div class="footer">
+    Dieses Protokoll wurde automatisch aus den BDD-Features und Testergebnissen generiert.
+    Screenshots stammen aus den Golden-File-Tests (matchesGoldenFile).
+  </div>
+</body>
+</html>
