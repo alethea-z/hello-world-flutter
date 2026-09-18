@@ -14,6 +14,8 @@ analyzer:
     - build/**
     - android/**
     - ios/**
+    - test/bdd/driver.dart
+    - test/bdd/goldens/**
 
 linter:
   # The lint rules applied to this project can be customized in the
