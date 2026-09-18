@@ -19,74 +19,76 @@
 </head>
 <body>
   <h1>BDD Test Protokoll</h1>
-  <p>Erzeugt am: 2026-09-18 08:13:46</p>
-
+  <p>Erzeugt am: 2026-09-18 10:21:14</p>
   <h2>Übersicht</h2>
   <table>
     <tr><th>Feature</th><th>Scenario</th><th>Status</th><th>Schritte</th><th>Screenshot</th></tr>
     <tr>
-      <td>Begrüßung</td>
+      <td>begruessung</td>
       <td>App zeigt Begrüßung an</td>
       <td class="passed">PASSED</td>
-      <td class="steps">
-        <li>Gegeben ist, dass die App frisch gestartet ist</li>
-        <li>Dann wird der Titel "Hallo Welt, Flutter" angezeigt</li>
-        <li>Und der Untertitel "Eine Cross-Plattform-Funktionalität" ist sichtbar</li>
-        <li>Und der Zähler zeigt 0</li>
-      </td>
-      <td><img src="goldens/begruessung.png" alt="Begrüßung Screenshot"></td>
+      <td class="steps">`Gegeben ist, dass die App frisch gestartet ist, dann wird der Titel &quot;Hallo Welt, Flutter&quot; angezeigt, und der Untertitel &quot;Eine Cross-Plattform-Funktionalität&quot; ist sichtbar, und der Zähler zeigt 0`</td>
+      <td><img src="goldens/begruessung.png" alt="begruessung Screenshot"></td>
     </tr>
     <tr>
-      <td>Zählen</td>
+      <td>begruessung</td>
+      <td>App startet ohne Fehlerdialog</td>
+      <td class="passed">PASSED</td>
+      <td class="steps">`Gegeben ist, dass die App frisch gestartet ist, dann wird keine Android-Fehlermeldung angezeigt, und die App ist im Vordergrund`</td>
+      <td><img src="goldens/begruessung.png" alt="begruessung Screenshot"></td>
+    </tr>
+    <tr>
+      <td>zaehlen</td>
       <td>Zähler wird durch Tippen erhöht</td>
       <td class="passed">PASSED</td>
-      <td class="steps">
-        <li>Gegeben ist, dass der Zähler bei 0 steht</li>
-        <li>Wenn ich auf den Button "Zählen" tippe</li>
-        <li>Dann zeigt der Zähler 1</li>
-        <li>Wenn ich erneut auf den Button "Zählen" tippe</li>
-        <li>Dann zeigt der Zähler 2</li>
-        <li>Und der Untertitel "Eine Cross-Plattform-Funktionalität" bleibt sichtbar</li>
-      </td>
-      <td><img src="goldens/zaehlen.png" alt="Zählen Screenshot"></td>
+      <td class="steps">`Gegeben ist, dass der Zähler bei 0 steht, dann zeigt der Zähler 1, dann zeigt der Zähler 2, und der Untertitel &quot;Eine Cross-Plattform-Funktionalität&quot; bleibt sichtbar`</td>
+      <td><img src="goldens/zaehlen.png" alt="zaehlen Screenshot"></td>
     </tr>
     <tr>
-      <td>Zurücksetzen</td>
-      <td>Zurücksetzen setzt Zähler zurück</td>
+      <td>zuruecksetzen</td>
+      <td>Zurücksetzen setzt Zähler auf 0 zurück</td>
       <td class="passed">PASSED</td>
-      <td class="steps">
-        <li>Gegeben ist, dass der Zähler bei 0 steht</li>
-        <li>Wenn ich auf den Button "Zurücksetzen" tippe</li>
-        <li>Dann zeigt der Zähler 0</li>
-      </td>
-      <td><img src="goldens/zuruecksetzen.png" alt="Zurücksetzen Screenshot"></td>
+      <td class="steps">`Gegeben ist, dass der Zähler bei 2 steht, dann zeigt der Zähler 0`</td>
+      <td><img src="goldens/zuruecksetzen.png" alt="zuruecksetzen Screenshot"></td>
+    </tr>
+    <tr>
+      <td>zuruecksetzen</td>
+      <td>Zurücksetzen ist deaktiviert, wenn Zähler 0 ist</td>
+      <td class="passed">PASSED</td>
+      <td class="steps">`Gegeben ist, dass der Zähler bei 0 steht, dann zeigt der Zähler weiterhin 0`</td>
+      <td><img src="goldens/zuruecksetzen.png" alt="zuruecksetzen Screenshot"></td>
     </tr>
   </table>
-
   <h2>Feature-Details</h2>
-  <h3>Feature: Begrüßung</h3>
+  <h3>Feature: begruessung</h3>
   <ul>
     <li><strong>Scenario:</strong> App zeigt Begrüßung an</li>
-    <li><strong>Schritte:</strong> Gegeben ist, dass die App frisch gestartet ist; dann wird der Titel "Hallo Welt, Flutter" angezeigt; und der Untertitel "Eine Cross-Plattform-Funktionalität" ist sichtbar; und der Zähler zeigt 0</li>
-    <li><strong>Screenshot:</strong> <img src="goldens/begruessung.png" alt="Begrüßung Screenshot"></li>
+    <li><strong>Schritte:</strong> `Gegeben ist, dass die App frisch gestartet ist, dann wird der Titel &quot;Hallo Welt, Flutter&quot; angezeigt, und der Untertitel &quot;Eine Cross-Plattform-Funktionalität&quot; ist sichtbar, und der Zähler zeigt 0`</li>
+    <li><strong>Screenshot:</strong> <img src="goldens/begruessung.png" alt="begruessung Screenshot"></li>
   </ul>
-  <h3>Feature: Zählen</h3>
+  <ul>
+    <li><strong>Scenario:</strong> App startet ohne Fehlerdialog</li>
+    <li><strong>Schritte:</strong> `Gegeben ist, dass die App frisch gestartet ist, dann wird keine Android-Fehlermeldung angezeigt, und die App ist im Vordergrund`</li>
+    <li><strong>Screenshot:</strong> <img src="goldens/begruessung.png" alt="begruessung Screenshot"></li>
+  </ul>
+  <h3>Feature: zaehlen</h3>
   <ul>
     <li><strong>Scenario:</strong> Zähler wird durch Tippen erhöht</li>
-    <li><strong>Schritte:</strong> Gegeben ist, dass der Zähler bei 0 steht; wenn ich auf den Button "Zählen" tippe; dann zeigt der Zähler 1; wenn ich erneut auf den Button "Zählen" tippe; dann zeigt der Zähler 2; und der Untertitel "Eine Cross-Plattform-Funktionalität" bleibt sichtbar</li>
-    <li><strong>Screenshot:</strong> <img src="goldens/zaehlen.png" alt="Zählen Screenshot"></li>
+    <li><strong>Schritte:</strong> `Gegeben ist, dass der Zähler bei 0 steht, dann zeigt der Zähler 1, dann zeigt der Zähler 2, und der Untertitel &quot;Eine Cross-Plattform-Funktionalität&quot; bleibt sichtbar`</li>
+    <li><strong>Screenshot:</strong> <img src="goldens/zaehlen.png" alt="zaehlen Screenshot"></li>
   </ul>
-  <h3>Feature: Zurücksetzen</h3>
+  <h3>Feature: zuruecksetzen</h3>
   <ul>
-    <li><strong>Scenario:</strong> Zurücksetzen setzt Zähler zurück</li>
-    <li><strong>Schritte:</strong> Gegeben ist, dass der Zähler bei 0 steht; wenn ich auf den Button "Zurücksetzen" tippe; dann zeigt der Zähler 0</li>
-    <li><strong>Screenshot:</strong> <img src="goldens/zuruecksetzen.png" alt="Zurücksetzen Screenshot"></li>
-    <li><strong>Scenario:</strong> Zurücksetzen ist deaktiviert, wenn Zähler 0 ist</li>
-    <li><strong>Schritte:</strong> Gegeben ist, dass der Zähler bei 2 steht; wenn ich auf den Button "Zurücksetzen" tippe; dann zeigt der Zähler 0</li>
-    <li><strong>Screenshot:</strong> <img src="goldens/zuruecksetzen.png" alt="Zurücksetzen Screenshot"></li>
+    <li><strong>Scenario:</strong> Zurücksetzen setzt Zähler auf 0 zurück</li>
+    <li><strong>Schritte:</strong> `Gegeben ist, dass der Zähler bei 2 steht, dann zeigt der Zähler 0`</li>
+    <li><strong>Screenshot:</strong> <img src="goldens/zuruecksetzen.png" alt="zuruecksetzen Screenshot"></li>
   </ul>
-
-  <p><strong>Gesamtdauer der Tests:</strong> ca. 8 Sekunden (aus vorherigem Lauf)</p>
+  <ul>
+    <li><strong>Scenario:</strong> Zurücksetzen ist deaktiviert, wenn Zähler 0 ist</li>
+    <li><strong>Schritte:</strong> `Gegeben ist, dass der Zähler bei 0 steht, dann zeigt der Zähler weiterhin 0`</li>
+    <li><strong>Screenshot:</strong> <img src="goldens/zuruecksetzen.png" alt="zuruecksetzen Screenshot"></li>
+  </ul>
+  <p><strong>Gesamtdauer der Tests:</strong> siehe CI-Lauf</p>
   <div class="footer">
     Dieses Protokoll wurde automatisch aus den BDD-Features und Testergebnissen generiert.
     Screenshots stammen aus den Golden-File-Tests (matchesGoldenFile).
