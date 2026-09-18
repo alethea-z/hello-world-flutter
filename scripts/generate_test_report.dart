@@ -4,7 +4,7 @@ void main() async {
   final testDir = Directory('test/bdd');
   final features = testDir
       .listSync()
-      .where((e) => e is File && e.path.endsWith('.feature'))
+      .where((e) => e is File && e.path.endsWith('.feature') && !e.path.endsWith('hello_world.feature'))
       .toList()
     ..sort((a, b) => a.path.compareTo(b.path));
 
@@ -81,5 +81,5 @@ void main() async {
 
   final reportFile = File('test_report.md');
   await reportFile.writeAsString(buffer.toString());
-  print('Report written to test_report.md');
+  // Report generated; no output needed for CI
 }

@@ -15,7 +15,9 @@
   - `test/bdd/goldens/begruessung.png`
   - `test/bdd/goldens/zaehlen.png`
   - `test/bdd/goldens/zuruecksetzen.png`
-- The screenshot comparison is the reproducible visual check for each test case.
+- Screenshot comparison is the reproducible visual check for each test case.
+- **Test report** (features with steps and screenshot paths): [`test_report.md`](/alethea-z/hello-world-flutter/blob/main/test_report.md)
+- Report generator script: `scripts/generate_test_report.dart` (`dart run scripts/generate_test_report.dart`)
 
 ## BDD trace
 - Feature specs:
