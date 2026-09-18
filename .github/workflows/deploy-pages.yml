@@ -17,6 +17,12 @@ jobs:
       - name: Set up Docker (optional, for consistent environment)
         run: echo "Using Ubuntu LTS"
 
+      - name: Install Flutter (for dart scripts)
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
       - name: Generate BDD Test Report
         run: |
           # Run from the repository root (checkout already places code here)
