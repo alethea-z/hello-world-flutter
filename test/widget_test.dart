@@ -5,10 +5,10 @@ import 'package:hello_world_flutter/main.dart';
 
 void main() {
   testWidgets('shows hello world message', (WidgetTester tester) async {
-    await tester.pumpWidget(const HelloWorldApp());
+    await tester.pumpWidget(const MaterialApp(home: HalloWelt()));
 
-    expect(find.byKey(const Key('helloText')), findsOneWidget);
-    expect(find.text('Hello World!'), findsOneWidget);
-    expect(find.text('Flutter app foundation ready for Android and iOS.'), findsOneWidget);
+    expect(find.byKey(const Key('titel')), findsOneWidget);
+    expect(find.text('Hallo Welt, Flutter'), findsOneWidget);
+    expect(find.text('Eine Cross-Plattform-Funktionalität'), findsOneWidget);
   });
 }

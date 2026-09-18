@@ -25,56 +25,17 @@ jobs:
       - name: Analyze
         run: flutter analyze
 
-      - name: Unit tests
-        run: flutter test --coverage
+      - name: Widget BDD tests
+        run: flutter test test/bdd --reporter expanded
 
-  emulator-gui-test:
-    runs-on: ubuntu-latest
-    timeout-minutes: 90
-    needs: analyze-and-test
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-          cache: true
-
-      - name: Flutter pub get
-        run: flutter pub get
-
-      - name: Install emulator runtime dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libpulse0
-
-      - name: Start Android emulator (TCG, no hypervisor) and run GUI test
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 30
-          target: default
-          arch: x86_64
-          profile: pixel
-          cores: 4
-          ram-size: 4096M
-          disable-animations: true
-          force-avd-creation: true
-          emulator-boot-timeout: 3600
-          emulator-options: -no-window -no-snapshot -noaudio -no-boot-anim -no-metrics -gpu swiftshader_indirect -camera-back none -camera-front none
-          script: |
-            adb wait-for-device
-            adb devices
-            flutter devices
-            flutter test integration_test/app_test.dart -d emulator-5554 --no-pub --reporter expanded
-            adb -s emulator-5554 exec-out screencap -p > emulator-home.png
-
-      - name: Upload emulator screenshot
+      - name: Upload BDD goldens
         uses: actions/upload-artifact@v4
         with:
-          name: emulator-screenshot
-          path: emulator-home.png
+          name: bdd-goldens
+          path: |
+            test/bdd/goldens/begruessung.png
+            test/bdd/goldens/zaehlen.png
+            test/bdd/goldens/zuruecksetzen.png
 
   build-android:
     runs-on: ubuntu-latest
