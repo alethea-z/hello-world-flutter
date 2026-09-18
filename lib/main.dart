@@ -66,36 +66,36 @@ class _HalloWeltState extends State<HalloWelt> {
                 ),
                 const SizedBox(height: 24),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      key: const ValueKey('zaehlen'),
-                      onPressed: _inkrement,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                        foregroundColor: Colors.white,
-                        minimumSize: const Size(160, 56),
-                        textStyle: const TextStyle(fontSize: 18),
-                      ),
-                      child: const Text('Zählen'),
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          key: const ValueKey('zaehlen'),
+                          onPressed: _inkrement,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue,
+                            foregroundColor: Colors.white,
+                            minimumSize: const Size(160, 56),
+                            textStyle: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                          ),
+                          child: const Text('Zählen'),
+                        ),
+                        const SizedBox(width: 16),
+                        ElevatedButton(
+                          key: const ValueKey('zuruecksetzen'),
+                          onPressed: _zaehler > 0 ? _zuruecksetzen : null,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                _zaehler > 0
+                                    ? Colors.red
+                                    : Colors.grey.shade400,
+                            foregroundColor: Colors.white,
+                            minimumSize: const Size(160, 56),
+                            textStyle: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                          ),
+                          child: const Text('Zurücksetzen'),
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: 16),
-                    ElevatedButton(
-                      key: const ValueKey('zuruecksetzen'),
-                      onPressed: _zaehler > 0 ? _zuruecksetzen : null,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            _zaehler > 0
-                                ? Colors.red
-                                : Colors.grey.shade400,
-                        foregroundColor: Colors.white,
-                        minimumSize: const Size(160, 56),
-                        textStyle: const TextStyle(fontSize: 18),
-                      ),
-                      child: const Text('Zurücksetzen'),
-                    ),
-                  ],
-                ),
               ],
             ),
           ),

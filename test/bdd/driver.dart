@@ -19,6 +19,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_driver/flutter_driver.dart';
+import 'package:flutter/services.dart';
 
 const _buttons = {'Zählen': 'zaehlen', 'Zurücksetzen': 'zuruecksetzen'};
 
@@ -282,6 +283,11 @@ Future<void> main() async {
     stderr.writeln('Fehler: Setze BDD_FEATURE_FILE oder BDD_FEATURE.');
     exit(2);
   }
+
+  // Font explizit laden (flutter_drive nutzt nicht flutter_test_config.dart)
+  final fontData = await rootBundle.load('assets/fonts/Roboto-Regular.ttf');
+  final loader = FontLoader('Roboto')..addFont(fontData);
+  await loader.load();
 
   final scenarios = _parseFeature(feat);
   final List<ScenarioReport> reports = [];
